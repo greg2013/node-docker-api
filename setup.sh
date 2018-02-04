@@ -1,0 +1,2 @@
+export NODE_ENV=development
+export OPENWEATHERMAP_API_KEY=999bca792d1cbc45bf840d412afd7dd6

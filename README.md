@@ -155,3 +155,26 @@ $ docker-compose up -d
 $ docker-compose run users-service npm test
 $ docker-compose run locations-service npm test
 ```
+
+---
+### Docker optimization
+`Reduced size from 3,434 mb to 502 mb`
+```
+gyzheng@greg sandbox  $ docker images | grep nodedockerapi | head -20
+nodedockerapi_tests                   latest              562659f9f6b4        2 minutes ago       81.7MB
+nodedockerapi_web                     latest              df0250b7791e        2 minutes ago       111MB
+nodedockerapi_locations-service       latest              7663f5deee3f        3 minutes ago       115MB
+nodedockerapi_locations-db            latest              6ca211ed876e        5 minutes ago       38.2MB
+nodedockerapi_users-service           latest              9c089fb4003f        5 minutes ago       118MB
+nodedockerapi_users-db                latest              02fc50f3f206        8 minutes ago       38.2MB
+nodedockerapiv2_tests                 latest              3f56f7cae7ed        24 hours ago        690MB
+nodedockerapiv2_web                   latest              1ed4ea13fac5        24 hours ago        719MB
+nodedockerapiv2_locations-service     latest              896fbad6ff1b        24 hours ago        724MB
+nodedockerapiv2_locations-db          latest              ff174588aced        24 hours ago        287MB
+nodedockerapiv2_users-service         latest              613b2d9cd5f8        24 hours ago        727MB
+nodedockerapiv2_users-db              latest              ab649ab991ce        24 hours ago        287MB
+```
+`Clean up previous images`
+```
+docker rmi $(docker images | grep nodedockerapiv | awk '{print $3}')
+```
